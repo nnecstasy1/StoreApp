@@ -25,7 +25,11 @@ namespace StoreApp.Data.Stock
 
         public List<T> Read<T>()
         {
+<<<<<<< HEAD
             List<Data.Category> categories = _dbConnection.Categories.ToList();
+=======
+            List<Data.Category> categories = dbConnection.Categories.ToList();
+>>>>>>> 8c3e8ed8545e6eea43f1820d0a77acd2eb782056
             return (List<T>)Convert.ChangeType(categories, typeof(List<T>));
         }
 
@@ -59,7 +63,11 @@ namespace StoreApp.Data.Stock
                 select c).First();
             
             //TO DO: assign new values to variables updated in the model, above variable is unused
+<<<<<<< HEAD
             _dbConnection.SaveChanges();
+=======
+            dbConnection.SaveChanges();
+>>>>>>> 8c3e8ed8545e6eea43f1820d0a77acd2eb782056
         }
     }
 }
