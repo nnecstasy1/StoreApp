@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StoreApp.Data.Stock
+namespace StoreApp.Data
 {
-    public interface IStockCRUD
+    public interface ICrud
     {
         void Create<T>(T item);
 

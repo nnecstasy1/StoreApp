@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace StoreApp.Data.Stock
 {
-    public class Category : IStockCRUD
+    public class Category : ICrud
     {
-        AppEntities dbConnection;
+        private AppEntities _dbConnection;
         public Category(AppEntities connection)
         {
-            dbConnection = connection;
+            _dbConnection = connection;
         }
 
         public void Create<T>(T modelItem)
@@ -18,21 +18,21 @@ namespace StoreApp.Data.Stock
             Data.Category category = modelItem as Data.Category;
             if (category != null)
             {
-                dbConnection.Categories.Add(category);
-                dbConnection.SaveChanges();
+                _dbConnection.Categories.Add(category);
+                _dbConnection.SaveChanges();
             }
         }
 
         public List<T> Read<T>()
         {
-            List<Data.Category> categories = dbConnection.Categories.ToList();
-            return categories;
+            List<Data.Category> categories = _dbConnection.Categories.ToList();
+            return (List<T>)Convert.ChangeType(categories, typeof(List<T>));
         }
 
         public T Read<T>(int itemId)
         {
             Data.Category category = Read<Data.Category>().First(categoryItem => categoryItem.categoryId == itemId);
-            return category;
+            return (T)Convert.ChangeType(category, typeof(T));
         }
 
         public void Update<T>(List<T> itemsList)
@@ -47,19 +47,19 @@ namespace StoreApp.Data.Stock
         {
             if (modelItemsList != null)
             {
-                dbConnection.Categories.RemoveRange(modelItemsList as List<Data.Category>);
-                dbConnection.SaveChanges();
+                _dbConnection.Categories.RemoveRange(modelItemsList as List<Data.Category>);
+                _dbConnection.SaveChanges();
             }
         }
 
         private void UpdateCategory(Data.Category categoryToUpdate)
         {
-            Data.Category currentCategory = (from c in dbConnection.Categories
+            Data.Category currentCategory = (from c in _dbConnection.Categories
                 where c.categoryId == categoryToUpdate.categoryId
                 select c).First();
-
-            //TO DO: assign new values to variables updated in the model
-            dbConnection.SaveChanges();
+            
+            //TO DO: assign new values to variables updated in the model, above variable is unused
+            _dbConnection.SaveChanges();
         }
     }
 }
