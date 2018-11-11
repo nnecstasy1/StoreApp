@@ -80,6 +80,7 @@
       <DependentUpon>App.tt</DependentUpon>
     </Compile>
     <Compile Include="Stock\Category.cs" />
+    <Compile Include="Stock\Product.cs" />
     <Compile Include="Supplier.cs">
       <DependentUpon>App.tt</DependentUpon>
     </Compile>
