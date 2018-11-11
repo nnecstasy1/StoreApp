@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StoreAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Item_Size_Supplier">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="int" />
+          <Property Name="sizeId" Type="int" />
+          <Property Name="supplierId" Type="int" />
+          <Property Name="cost" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductItem">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="categoryId" Type="int" />
+          <Property Name="productName" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="sizeId" />
+          </Key>
+          <Property Name="sizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sizeNo" Type="int" />
+          <Property Name="sizeType" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplierId" />
+          </Key>
+          <Property Name="supplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplierName" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="phone" Type="int" />
+          <Property Name="fax" Type="int" />
+          <Property Name="address" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__Item_Size__quant__2C3393D0">
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="0..1" />
+          <End Role="Item_Size_Supplier" Type="Self.Item_Size_Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductItem">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="Item_Size_Supplier">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item_Size__sizeI__2D27B809">
+          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+          <End Role="Item_Size_Supplier" Type="Self.Item_Size_Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="sizeId" />
+            </Principal>
+            <Dependent Role="Item_Size_Supplier">
+              <PropertyRef Name="sizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item_Size__suppl__2E1BDC42">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Item_Size_Supplier" Type="Self.Item_Size_Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplierId" />
+            </Principal>
+            <Dependent Role="Item_Size_Supplier">
+              <PropertyRef Name="supplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductIt__categ__25869641">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="ProductItem">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreAppModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_Size_Supplier" EntityType="Self.Item_Size_Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductItem" EntityType="Self.ProductItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Item_Size__quant__2C3393D0" Association="Self.FK__Item_Size__quant__2C3393D0">
+            <End Role="ProductItem" EntitySet="ProductItem" />
+            <End Role="Item_Size_Supplier" EntitySet="Item_Size_Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item_Size__sizeI__2D27B809" Association="Self.FK__Item_Size__sizeI__2D27B809">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="Item_Size_Supplier" EntitySet="Item_Size_Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item_Size__suppl__2E1BDC42" Association="Self.FK__Item_Size__suppl__2E1BDC42">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Item_Size_Supplier" EntitySet="Item_Size_Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductIt__categ__25869641" Association="Self.FK__ProductIt__categ__25869641">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProductItem" EntitySet="ProductItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoreAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <Property Name="categoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductItems" Relationship="Self.FK__ProductIt__categ__25869641" FromRole="Category" ToRole="ProductItem" />
+        </EntityType>
+        <EntityType Name="Item_Size_Supplier">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="Int32" Nullable="false" />
+          <Property Name="productId" Type="Int32" />
+          <Property Name="sizeId" Type="Int32" />
+          <Property Name="supplierId" Type="Int32" />
+          <Property Name="cost" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="ProductItem" Relationship="Self.FK__Item_Size__quant__33D4B598" FromRole="Item_Size_Supplier" ToRole="ProductItem" />
+          <NavigationProperty Name="Size" Relationship="Self.FK__Item_Size__sizeI__34C8D9D1" FromRole="Item_Size_Supplier" ToRole="Size" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK__Item_Size__suppl__35BCFE0A" FromRole="Item_Size_Supplier" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="ProductItem">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="categoryId" Type="Int32" />
+          <Property Name="productName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__ProductIt__categ__25869641" FromRole="ProductItem" ToRole="Category" />
+          <NavigationProperty Name="Item_Size_Supplier" Relationship="Self.FK__Item_Size__quant__33D4B598" FromRole="ProductItem" ToRole="Item_Size_Supplier" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="sizeId" />
+          </Key>
+          <Property Name="sizeId" Type="Int32" Nullable="false" />
+          <Property Name="sizeNo" Type="Int32" />
+          <Property Name="sizeType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item_Size_Supplier" Relationship="Self.FK__Item_Size__sizeI__34C8D9D1" FromRole="Size" ToRole="Item_Size_Supplier" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplierId" />
+          </Key>
+          <Property Name="supplierId" Type="Int32" Nullable="false" />
+          <Property Name="supplierName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="Int32" />
+          <Property Name="fax" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item_Size_Supplier" Relationship="Self.FK__Item_Size__suppl__35BCFE0A" FromRole="Supplier" ToRole="Item_Size_Supplier" />
+        </EntityType>
+        <Association Name="FK__ProductIt__categ__25869641">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="ProductItem">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item_Size__quant__33D4B598">
+          <End Role="ProductItem" Type="Self.ProductItem" Multiplicity="0..1" />
+          <End Role="Item_Size_Supplier" Type="Self.Item_Size_Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductItem">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="Item_Size_Supplier">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item_Size__sizeI__34C8D9D1">
+          <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
+          <End Role="Item_Size_Supplier" Type="Self.Item_Size_Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="sizeId" />
+            </Principal>
+            <Dependent Role="Item_Size_Supplier">
+              <PropertyRef Name="sizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Item_Size__suppl__35BCFE0A">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Item_Size_Supplier" Type="Self.Item_Size_Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplierId" />
+            </Principal>
+            <Dependent Role="Item_Size_Supplier">
+              <PropertyRef Name="supplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Item_Size_Supplier" EntityType="Self.Item_Size_Supplier" />
+          <EntitySet Name="ProductItems" EntityType="Self.ProductItem" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <AssociationSet Name="FK__ProductIt__categ__25869641" Association="Self.FK__ProductIt__categ__25869641">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="ProductItem" EntitySet="ProductItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item_Size__quant__33D4B598" Association="Self.FK__Item_Size__quant__33D4B598">
+            <End Role="ProductItem" EntitySet="ProductItems" />
+            <End Role="Item_Size_Supplier" EntitySet="Item_Size_Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item_Size__sizeI__34C8D9D1" Association="Self.FK__Item_Size__sizeI__34C8D9D1">
+            <End Role="Size" EntitySet="Sizes" />
+            <End Role="Item_Size_Supplier" EntitySet="Item_Size_Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Item_Size__suppl__35BCFE0A" Association="Self.FK__Item_Size__suppl__35BCFE0A">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="Item_Size_Supplier" EntitySet="Item_Size_Supplier" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoreAppModelStoreContainer" CdmEntityContainer="AppEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="StoreAppModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_Size_Supplier">
+            <EntityTypeMapping TypeName="StoreAppModel.Item_Size_Supplier">
+              <MappingFragment StoreEntitySet="Item_Size_Supplier">
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="sizeId" ColumnName="sizeId" />
+                <ScalarProperty Name="supplierId" ColumnName="supplierId" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductItems">
+            <EntityTypeMapping TypeName="StoreAppModel.ProductItem">
+              <MappingFragment StoreEntitySet="ProductItem">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="StoreAppModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="sizeId" ColumnName="sizeId" />
+                <ScalarProperty Name="sizeNo" ColumnName="sizeNo" />
+                <ScalarProperty Name="sizeType" ColumnName="sizeType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="StoreAppModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="supplierId" ColumnName="supplierId" />
+                <ScalarProperty Name="supplierName" ColumnName="supplierName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

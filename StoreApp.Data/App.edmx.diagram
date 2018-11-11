@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4be676be66a64bb589baf7bb9cbcbdf3" Name="Diagram1">
+        <EntityTypeShape EntityType="StoreAppModel.Category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreAppModel.Item_Size_Supplier" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreAppModel.ProductItem" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreAppModel.Size" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreAppModel.Supplier" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="StoreAppModel.FK__ProductIt__categ__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreAppModel.FK__Item_Size__quant__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreAppModel.FK__Item_Size__sizeI__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreAppModel.FK__Item_Size__suppl__35BCFE0A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
