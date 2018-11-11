@@ -1,0 +1,48 @@
+        #region
+        AppEntities dbConnection;
+        public Category(AppEntities connection)
+        {
+            dbConnection = connection;
+        }
+
+        public List<Data.Category> GetCategory()
+        {
+            List<Data.Category> categories =  dbConnection.Categories.ToList();
+            return categories;
+        }
+
+        public Data.Category GetCategory(int categoryId)
+        {
+            return GetCategory().First(x => x.categoryId == categoryId);
+        }
+
+        public void AddCategory(Data.Category category)
+        {
+            dbConnection.Categories.Add(category);
+            dbConnection.SaveChanges();
+        }
+
+        public void DeleteCategory(List<Data.Category> categories)
+        {
+            dbConnection.Categories.RemoveRange(categories);
+            dbConnection.SaveChanges();
+        }
+
+        public void Update(List<Data.Category> categories)
+        {
+            Parallel.ForEach(categories, item =>
+            {
+                UpdateCategory(item);
+            });
+        }
+
+        private void UpdateCategory(Data.Category categoryToUpdate)
+        {
+            Data.Category currentCategory = (from c in dbConnection.Categories
+                where c.categoryId == categoryToUpdate.categoryId
+                select c).First();
+
+            //currentCategory.categoryName = categoryToUpdate.categoryName;
+            dbConnection.SaveChanges();
+        }
+        #endregion
