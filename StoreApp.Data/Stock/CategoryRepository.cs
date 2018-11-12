@@ -37,9 +37,9 @@ namespace StoreApp.Data.Stock
             return (T)Convert.ChangeType(category, typeof(T));
         }
 
-        public void Update<T>(List<T> itemsList)
+        public void Update<T>(List<T> modelItemsList)
         {
-            var categoriesToUpdate = itemsList as List<Category>;
+            var categoriesToUpdate = modelItemsList as List<Category>;
 
             if (categoriesToUpdate != null)
             {

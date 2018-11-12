@@ -13,7 +13,7 @@ namespace StoreApp.Data.Stock
             throw new NotImplementedException();
         }
 
-        public void Delete<T>(List<T> itemsList)
+        public void Delete<T>(List<T> modelItemsList)
         {
             throw new NotImplementedException();
         }
@@ -28,7 +28,7 @@ namespace StoreApp.Data.Stock
             throw new NotImplementedException();
         }
 
-        public void Update<T>(List<T> itemsList)
+        public void Update<T>(List<T> modelItemsList)
         {
             throw new NotImplementedException();
         }

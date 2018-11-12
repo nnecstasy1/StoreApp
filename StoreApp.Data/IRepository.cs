@@ -13,8 +13,8 @@ namespace StoreApp.Data
         List<T> Read<T>();
         T Read<T>(int itemId);
 
-        void Update<T>(List<T> itemsList);
+        void Update<T>(List<T> modelItemsList);
 
-        void Delete<T>(List<T> itemsList);
+        void Delete<T>(List<T> modelItemsList);
     }
 }
