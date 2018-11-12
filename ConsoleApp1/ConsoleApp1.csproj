@@ -70,10 +70,6 @@
       <Project>{24e38058-8978-4a31-9e70-588b67d49d84}</Project>
       <Name>StoreApp.ViewModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StoreApp.Views\StoreApp.Views.csproj">
-      <Project>{fb8e6fc1-d4d7-4dc7-998a-8470039617fd}</Project>
-      <Name>StoreApp.Views</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

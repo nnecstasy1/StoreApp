@@ -14,20 +14,20 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var connection = new AppEntities();
+            var _appEntities = new AppEntities();
 
-            CategoryBL _categoryBl = new CategoryBL(connection);
-
+            CategoryBL _categoryBl = new CategoryBL(_appEntities);
+            _categoryBl.UpdateCategory();
             var x  = _categoryBl.GetCategories();
 
-            //test add
-            CategoryViewModel categoryViewModel = new CategoryViewModel
-            {
-                categoryName = "Category A",
-                description = "category A description"
-            };
+            ////test add
+            //CategoryViewModel categoryViewModel = new CategoryViewModel
+            //{
+            //    categoryName = "Category A",
+            //    description = "category A description"
+            //};
 
-            _categoryBl.AddCategory(categoryViewModel);
+            //_categoryBl.AddCategory(categoryViewModel);
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StoreApp.Views
+namespace StoreApp.WinForms
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

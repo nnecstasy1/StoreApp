@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoreApp.Data
 {
-    public interface ICrud
+    public interface IRepository
     {
         void Create<T>(T item);
 

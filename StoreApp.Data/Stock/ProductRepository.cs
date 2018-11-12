@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoreApp.Data.Stock
 {
-    public class Product : ICrud
+    public class ProductRepository : IRepository
     {
         public void Create<T>(T item)
         {

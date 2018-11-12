@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using StoreApp.Data;
 using StoreApp.Model.Stock;
 using StoreApp.Data.Stock;
 
@@ -7,16 +8,16 @@ namespace StoreApp.Logic
 {
     public class CategoryBL
     {
-        private Category _categoryDB;
+        private CategoryRepository _categoryRepository;
 
-        public CategoryBL(StoreApp.Data.AppEntities connection)
+        public CategoryBL(AppEntities appEntities)
         {
-            _categoryDB = new Category(connection);
+            _categoryRepository = new CategoryRepository(appEntities);
         }
 
-        public List<Data.Category> GetCategories()
+        public List<Category> GetCategories()
         {
-            var categories = _categoryDB.Read<Data.Category>();
+            var categories = _categoryRepository.Read<Category>();
             return categories;
         }
 
@@ -26,8 +27,8 @@ namespace StoreApp.Logic
             {
                 if (ValidateModel(category))
                 {
-                    _categoryDB.Create(
-                        new Data.Category()
+                    _categoryRepository.Create(
+                        new Category()
                         {
                             categoryName = category.categoryName,
                             description = category.description
@@ -46,7 +47,13 @@ namespace StoreApp.Logic
             }
         }
 
-        private bool ValidateModel(CategoryViewModel categoryView)
+        public void UpdateCategory()
+        {
+            //TO DO:
+            _categoryRepository.Update(null as List<Category>);
+        }
+
+        private bool ValidateModel(CategoryViewModel categoryViewModel)
         {
             return true;
         }

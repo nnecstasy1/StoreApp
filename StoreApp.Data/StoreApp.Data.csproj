@@ -68,7 +68,7 @@
     <Compile Include="Category.cs">
       <DependentUpon>App.tt</DependentUpon>
     </Compile>
-    <Compile Include="ICrud.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Item_Size_Supplier.cs">
       <DependentUpon>App.tt</DependentUpon>
     </Compile>
@@ -79,8 +79,8 @@
     <Compile Include="Size.cs">
       <DependentUpon>App.tt</DependentUpon>
     </Compile>
-    <Compile Include="Stock\Category.cs" />
-    <Compile Include="Stock\Product.cs" />
+    <Compile Include="Stock\CategoryRepository.cs" />
+    <Compile Include="Stock\ProductRepository.cs" />
     <Compile Include="Supplier.cs">
       <DependentUpon>App.tt</DependentUpon>
     </Compile>

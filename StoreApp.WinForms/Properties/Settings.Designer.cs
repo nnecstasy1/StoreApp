@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StoreApp.Views.Properties
+namespace StoreApp.WinForms.Properties
 {
 
 
